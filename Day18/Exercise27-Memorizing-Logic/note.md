@@ -9,4 +9,39 @@
 
 关于背东西，给一个小窍门避免死记硬背：每天花一小点时间去背一小部分东西，不要想着坐在那里一次性背2小时，不管用。不论你背多长时间，你的大脑之后记住前15或30分钟你看过的东西。 好的做法是制作一堆索引卡片，正面左侧写上`True  or False`，正面右侧写上结果`True or False`，当你一看到卡片，应该立即说出`True`，反复练习，直到你滚瓜烂熟。  
 
-过了上面那一关之后，你应该每晚在自己的笔记本上写下你的真值表，不要Copy，试着凭记忆去写，如果卡住了，就快速瞄一眼。
+过了上面那一关之后，你应该每晚在自己的笔记本上写下你的真值表，不要Copy，试着凭记忆去写，如果卡住了，就快速瞄一眼。  
+
+### 术语
+在 Python 中我们会用到下面的术语来定义事物的真` True`或假` False` 计算机的逻辑就是在程序的某个位置检查这些字符或者变量组合在一起的结果是真还是假.  
+* and 与
+* or 或
+* not 非
+* != (not equal)不等于
+* == (equal)等于
+* '>=' (greater-than-equal)大于等于
+* <= (less-than-equal)小于等于
+* True 真
+* False 假
+
+
+### 真值表
+下面这个表是你要记住的  
+
+NOT 表| 返回结果
+------|------
+not False | True
+not True | False
+
+OR 表 | 返回结果
+------|-------
+True or False | True
+True or True | True
+False or True | True
+False or False | False
+
+AND 表 | 返回结果
+-------|-------
+True and False | False
+True and True | True
+False and True  | False
+False and False | False
