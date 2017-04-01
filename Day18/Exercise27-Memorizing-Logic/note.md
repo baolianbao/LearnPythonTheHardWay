@@ -45,3 +45,17 @@ True and False | False
 True and True | True
 False and True  | False
 False and False | False
+
+等阶运算 != 表 | 返回结果
+--------------|-------
+1 != 0 | True
+1 != 1 | False
+0 != 1 | True
+0 != 0 | False
+
+等阶运算 ==表 | 返回结果
+-------------| ------
+1 == 0 | False
+1 == 1 | True
+0 == 1 | False
+0 == 0 | True
