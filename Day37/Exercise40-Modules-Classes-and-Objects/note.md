@@ -74,4 +74,29 @@ print thing.tangerine
 ```
 第一行是`实例`操作,有点像调用一个函数,然而当你调用的时候,Python 会为你启动一个事件顺序.我会用上边的代码来讲解这个流程:
 1. Python 开始查找` Mystuff()` 发现这是一个你定义的类
-2. 
+2.
+3. 接着 Python 看到你设置了一个魔术般的函数`__init__`,剩下的不知道怎么翻译了
+4. 大概是说在函数中获取一个额外的变量` self`,是 Python 为用户设置的空的对象.我可以用它设置变量,就想使用模块,字典一样.
+5. 在这个案例中,我为歌词设置了一个变量 `self.tangerine` ,然后将这个对象初始化.
+6. 现在 Python 用这个刚制作的对象,分配给变量,以便用户使用
+
+以上大致就是当你调用` class`时, Python 如何执行这个 `mini-import`.  
+
+* 类就像关于创建新`mini-modules`的蓝图或者定义
+* 实例就是关于你创建一个`mini-modules`的同时导入它
+* 最终创建的这个` mini-modules`就叫做`对象`,然后你可以把它赋给变量去使用
+
+## 三种获得内容的方式
+```py
+# dict style
+mystuff['apples']
+
+# module style
+mystuff.apples()
+print mystuff.tangerine
+
+# class style
+thing = Mystuff()
+thing.apples()
+print thing.tangerine
+```
