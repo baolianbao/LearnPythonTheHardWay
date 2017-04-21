@@ -13,7 +13,7 @@ PHRASES = {
     "class %%%(object): \n\tdef *** (self,@@@)":
     "class %%% has-a function named *** that takes self and @@@ parameters.",
     "***.***(@@@)"
-    "Set *** to an instance of class %%%."
+    "Set *** to an instance of class %%%.",
     "***.***(@@@)":
     "From *** get the *** function, and call it with parameters self,@@@",
     "***.*** = '***'":
@@ -79,3 +79,4 @@ try:
             print "ANSWER: %s\n\n"% answer
 except EOFError:
     print "\nBye"
+    
