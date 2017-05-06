@@ -17,3 +17,54 @@
 3. 子类的动作在父类的动作之后
 
 接下来,我会按顺序论证每个方法.
+
+#### 隐含继承
+首先,我会为你展示隐含动作发生在,当你为_父类_ 中定义了一个函数,但是没有在子类中定义时.
+
+```py
+class Parent(object):
+
+    def implicit(self):
+        print "PARENT implicit()"
+
+class Child(Parent):
+    pass
+
+dad = Parent()
+son = Child()
+
+dad.implicit()
+son.implicit()
+```
+Child 下面的 pass 作用是:告诉 Python,这是一空白代码块.虽然创造了一个类名叫` Child`,但是并没有为它定义任何东西,他的全部东西都继承自 `Parent`,当你运行代码的时候,你会得到如下结果.
+```py
+$ python ex44.py
+PARENT implicit()
+PARENT implicit()
+```
+#### 覆盖继承
+当子类继承的某个函数需要父类有不同表现时,_隐含继承_ 就有问题. 这时你只需要在子类中设置一个相同名字的函数,就可以覆盖掉父类的继承函数.请看下面这段代码:
+```py
+class Parent(object):
+  def override(self):
+    print "PARENT override()"
+
+class Child(Parent):
+  def override(self):
+    print "CHILD override()"
+
+dad = Parent()
+son = Child()
+
+dad.override()
+son.override()
+
+```
+可以看到如下结果:
+```py
+$ python ex44.py
+PARENT override()
+CHILD override()
+
+```
+就想你看到的,当`dad.override()`运行时,得到了` Parent.override`函数,因为变量` dad`是 Parent, 但是当`son.override()`运行时,输出了` Child.override`的信息,因为` Son`是 Child的实例,而 Child 用自己的函数覆盖了 Parent 的函数.
