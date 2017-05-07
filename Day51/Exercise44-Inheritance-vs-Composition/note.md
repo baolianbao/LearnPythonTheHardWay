@@ -68,3 +68,39 @@ CHILD override()
 
 ```
 就想你看到的,当`dad.override()`运行时,得到了` Parent.override`函数,因为变量` dad`是 Parent, 但是当`son.override()`运行时,输出了` Child.override`的信息,因为` Son`是 Child的实例,而 Child 用自己的函数覆盖了 Parent 的函数.
+### 改变之前或之后
+第三种方式使用_继承_ 的方式有点特殊,它可以让你决定子类的函数在父类函数的之前或者之后运行.这需要借助一个 Python 内置的函数--` super`,来调取父类的函数. 代码如下:
+```py
+1  class Parent(object):
+2
+3     def altered(self):
+4         print "PARENT altered()"
+5
+6 class Child(Parent):
+7
+8     def altered(self):
+9       print "CHILD, BEFORE PARENT altered()"
+10      super(Child, self).altered()
+11      print "CHILD,AFTER PARENT altered()"
+12
+13  dad = Parent()
+14  son = Child()
+15
+16 dad.altered()
+17 son.altered()
+```
+关键点在9-11行代码,定义了` son.altered()`的工作原理:
+1. 因为子类设置了跟父类相同的函数名,所以父类函数被覆盖,第9行代码得以运行.
+2. 在此例中,我需要做一个`之前`和`之后`的对照,于是我使用` super`调用了` Parent.altered`的函数版本
+3. 在第10行代码,我使用` super(Child, self).altered()`,它可以提高父类函数的继承权限,屏蔽子类的覆盖.
+4. 于是,`Parent.altered`得以运行,可以从控制台中看到输出信息.
+5. 当` Parent.altered()`运行过之后,`继续执行 Child.altered`函数最后一行代码.
+
+你看到如下输出:
+```py
+$ python ex44.py
+PARENT altered()
+CHILD, BEFORE PARENT altered()
+PARENT altered()
+CHILD, AFTER PARENT altered()
+```
