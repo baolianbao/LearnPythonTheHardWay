@@ -104,3 +104,61 @@ CHILD, BEFORE PARENT altered()
 PARENT altered()
 CHILD, AFTER PARENT altered()
 ```
+### 3种混合
+为了集中展示这三种，我这有一个最终版本的代码，一次展示这三种继承方式。
+```py
+1 class Parent(object):
+2
+3       def override(self):
+4         print "PARENT override()"
+5
+6       def implicit(self):
+7         print "PARENT implicit()"
+8
+9       def altered(self):
+10         print "PARENT altered()"
+11
+12  class Child(Parent):
+13     
+14      def override(self):
+15         print "CHILD override（）"
+16       
+17      def altered(self):
+18        print "CHILD,BEFORE PARENT altered()"
+19        super(Child, self).altered()
+20        print "CHILD, AFTER PARENT altered()"
+21
+22  dad = Parent()
+23  son = Child()
+24
+25 dad.implicit()  # this line will  print ""PARENT implicit()""
+26 son.implicit() # this line will print "PARENT implicit()"
+27
+28 dad.override() # this line will print "PARENT override()"
+29 son.override() # this line will print "PARENT override()"
+30
+31 dad.altered() # this line will print PARENT altered()"
+32 son.altered() # this line will "CHILD,BEFORE PARENT altered()" ,"PARENT altered()","CHILD, AFTER PARENT altered()"
+```
+### 使用super() 的原因
+这差不多是个常识,但是我们有个问题在于"多重继承",多重继承就是一个子类继承自多个父类.比如这个:
+```py
+ class SuperFun(Child, BadStuff):
+   pass
+```
+上述代码的意思是:设置一个类名叫` SuperFun`同时继承父类 Child 和 BadStuff.  
+
+在这个例子中,每当你在任意一个` SuperFun`的实例中使用隐含继承时, Python 会开始在` BadStuff`和` Child`中搜寻任何可能相似的类,但在执行这个动作的时候,有一个一致的顺序.叫做"Method resolution order(MRO)",还有一个叫"C3"的算法来实现.   
+因为MRO是一个复杂的,定义明确的用法. Python 不可能将操作权限交给你.所以 Python 给了一个` super()`函数,在你需要改变继承属性的时候使用.  
+
+### 搭配 super() 使用 __init__
+super() 的最常见的用法就是在`__init__`函数中.这通常是你在 Child 这种类里边需要做的唯一的事.然后完成 Parent 的初始化. 这有一个简洁的例子:
+```py
+class Child(Parent):
+
+  def __init__(self, stuff):
+     self.stuff = stuff
+     super(Child, self).__init__()
+```
+
+## 合成
