@@ -162,3 +162,47 @@ class Child(Parent):
 ```
 
 ## 合成
+继承是很有用,但还有另一种途径可以实现同样的操作,使用类和模块,而不是依赖隐含继承.这个方式可以简单地复制另一个类,这有一个例子:  
+```py
+class  Other(object):
+
+  def override(self):
+    print "OTHER override()"
+
+  def implicit(self):
+    print "OTHER implicit()"
+
+  def altered(self):
+    print "OTHER altered()"
+
+class Child(object):
+
+  def __init__(self):
+    self.other = Other()
+
+  def implicit(self):
+    self.other.implicit()
+
+  def override(self):
+    print "CHILD override()"
+
+  def altered(self):
+    print "CHILD, BEFORE OTHER altered()"
+    self.other.altered()
+    print "CHILD, AFTER OTHER altered()"
+
+son = CHILD()
+
+son.implicit()
+son.override()
+son.altered()
+```
+## 什么时候用继承,什么时候用合成?
+不论使用_继承_ 还是_合成_,都是期望通过可复用的代码了解决问题.你不会希望在用复杂的代码开发软件,因为目前为止,证明那是低效的._继承_ 的作用是通过建立一个机制来解决问题,这个机制由一些基本的类组成,并内置一些功能. _合成_ 的方法是给你一些模块,并能够调用其他类中的函数.  
+如果碰到一个问题,用两种方法都可以解决,那到底用哪种合适?答案是非常主观的.你可以借鉴我的3条规则:
+1. 任何情况下,避免多重继承,如果你被卡住了,那就停下来去了解类的层级并花一些时间研究这些概念的来龙去脉.
+2. 使用_合成_ 将代码打包进一个模块,然后使用到非常多的非相关的场景和地方
+3. 当这里有很多关联性强的概念时,可以使用_继承_.
+
+### 课程训练
+前往阅读 http://www.python.org/dev/peps/pep-0008 开始试着用自己的代码来实现.你会注意到,网站上的说法跟本书不太相同,现在你应该自己试着去理解官方文档了.
