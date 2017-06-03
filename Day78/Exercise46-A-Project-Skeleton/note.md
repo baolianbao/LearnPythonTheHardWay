@@ -18,3 +18,25 @@
 
 ### 创建项目骨架目录
 首先,使用以下命令,创建你的项目骨架目录:  
+```py
+$ mkdir projects
+$ cd projects
+$ mkdir skeleton
+$ cd skeleton
+$ mkdir bin
+$ mkdir NAME
+$ mkdir tests
+$ mkdir docs
+```
+其中 NAME 这个文件可以以你的主要模块来命名.
+接下来,我们设置一些初始文件:  
+```py
+$ touch NAME/__init__.py
+$ touch tests/__init__.py
+```
+在 windows PowerShell 中可以用如下命令:
+```py
+$ new-item -type file NAME/__init__.py
+$ new-item -type file tests/__init__.py
+```
+我们需要创建一个` setup.py` 文件,我们后面用它来安装我们的项目.
