@@ -39,4 +39,19 @@ $ touch tests/__init__.py
 $ new-item -type file NAME/__init__.py
 $ new-item -type file tests/__init__.py
 ```
-我们需要创建一个` setup.py` 文件,我们后面用它来安装我们的项目.
+我们需要创建一个` setup.py` 文件,我们后面用它来安装我们的项目.除了这个文件,我们还需要一个小的测试文件.`tests/NAME_tests.py`  
+目前的项目文件结构是这样的:
+```
+$ ls -R
+NAME	bin	docs	tests
+
+./NAME:
+__init__.py
+
+./bin:
+
+./docs:
+
+./tests:
+NAME_tests.py	__init__.py
+```
