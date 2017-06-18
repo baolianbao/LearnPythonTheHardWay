@@ -44,3 +44,40 @@ sentence = [first_word, second_word]
 
 ### 扫描输入
 现在你已经准备编写你的扫描器了.这个扫描器从用户那获取一个字符串并返回一个由元组(TOKEN,WORD)组成的句子.如果发现某个单词未包含在词典中,那么这个单词的 WORD也会返回,但是 TOKEN 会提示 ERROR, 这些错误的 token 会提示用户他们输入有误.
+
+还是老规矩,我来告诉你怎么做,而不是直接给你代码.  
+
+### 例外和数字
+这还有一件小事,我得先告诉你.关于"转换数字",为了做这个,我们得进行哄骗并使用`例外`.`例外`实际上是函数运行中的一个错误,你要搞明白函数为什么会遇到这个错误,才能处理这个错误.举个例子,你在 Python 中输入下面的命令试一下:  
+```py
+David$ python
+Python 2.7.10 (default, Feb  7 2017, 00:08:15)
+[GCC 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.34)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> int("hell")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: invalid literal for int() with base 10: 'hell'
+```
+上面的` ValueError`就是` int()`函数的一个例外,因为`hell`并不是整数.`int()`并没有让你逐个尝试哪种输入是例外,它直接给出了`ValueError`,交给你来处理.  
+
+你可以用 `try`和`例外关键词`来处理.  
+```py
+def convert_number(s)
+    try:
+      return int(s)
+    except ValueError:
+      return None
+```
+你将这段代码放进` try block`里,来测试可能出现的错误. **在你写的扫描器里,你应该使用一个函数来测试某些数字的东西.**  本节的练习内容,你可以依葫芦画瓢放到你的新项目里,但是不要单纯地复制粘贴,然后编写你自己的扫描器来测试.时刻注意细节,并确保一切环节运转正常.
+
+
+### 设计提示
+每次聚焦于测试一个部分.保持简单并将所有词典中的单词都放到` lexicon.py`模块中.不要更改这个单词输入列表,但是可以用词典元组创建新的列表.  
+
+### 课程训练
+1. 改善测试单元确保能覆盖所有词典
+2. 添加一些新词,然后更新测试单元
+3. 确保你的扫描器在输入任何的大小写字母或符号都能正常工作
+4. 再找一种新的方法来转换数字
+5. 我的解决方案用了37行代码,你能否把它缩减到更短.
