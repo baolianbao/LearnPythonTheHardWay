@@ -53,4 +53,4 @@ def skip(word_list, word_type):
     while peek(word_list) == word_type:
       match(word_list, word_type)
 ```
-现在你应该能够明白这些函数是干嘛的,一定确保你已经理解.  
+现在你应该能够明白这些函数是干嘛的,一定确保你已经理解.   
